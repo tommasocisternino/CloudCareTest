@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -43,6 +43,7 @@ return [
         'api' => [
             'driver' => 'jwt',
             'provider' => 'users',
+            'ttl' => config('app.JWT_MINUTES_EXPIRATION',60),
         ],
     ],
 

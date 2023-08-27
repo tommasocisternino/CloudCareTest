@@ -185,4 +185,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'JWT_MINUTES_EXPIRATION'=> env('JWT_MINUTES_EXPIRATION',60),
 ];
