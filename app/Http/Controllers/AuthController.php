@@ -13,20 +13,22 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (!$token = auth()->attempt($request->only(['username','password']))) {
+        if (!$token = auth()->attempt($request->only(['username', 'password']))) {
             return response()->json(["message" => "Unauthorized", "user" => auth()->user()], 401);
         }
 
-        return $this->responseWithJWT($token, auth()->user()->toArray());
+        return $this->responseWithJWT($token, auth()->user());
     }
 
-    public function responseWithJWT($token, array $user = null)
+    public function responseWithJWT($token,$user = null)
     {
+        $cookie = cookie('jwt', $token, config('app.JWT_MINUTES_EXPIRATION', 60), null, null, false, true);
+
         return response()->json([
             'access_token' => $token,
             'type' => 'Bearer',
-            'expires_in' => 3600,
-            'user' => $user
-        ]);
+            'expires_in' => config('app.JWT_MINUTES_EXPIRATION', 60) * 60,
+            'user' => $user->only("username"),
+        ])->withCookie($cookie);
     }
 }
