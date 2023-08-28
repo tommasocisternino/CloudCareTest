@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -20,11 +21,22 @@ class AuthController extends Controller
         return $this->responseWithJWT($token, auth()->user());
     }
 
-    public function check(){
-        return response()->json(["user" => auth()->user()]);
+    public function logout(Request $request)
+    {
+        JWTAuth::invalidate(JWTAuth::fromUser(auth()->user()));
+
+        auth()->logout();
+
+        return response()->json(["message" => "Logged out"
+        ], 200);
     }
 
-    public function responseWithJWT($token,$user = null)
+    public function check()
+    {
+        return response()->json([auth()->user()]);
+    }
+
+    public function responseWithJWT($token, $user = null)
     {
         $cookie = cookie('jwt', $token, config('app.JWT_MINUTES_EXPIRATION', 60), null, null, false, true);
 

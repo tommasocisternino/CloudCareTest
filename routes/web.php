@@ -12,3 +12,4 @@ Route::get('login', function () {
 })->middleware("jwtcookie.guest")->name('login-view');
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::get('logout', [AuthController::class, 'logout'])->middleware('jwt.auth')->name('logout');
