@@ -20,6 +20,10 @@ class AuthController extends Controller
         return $this->responseWithJWT($token, auth()->user());
     }
 
+    public function check(){
+        return response()->json(["user" => auth()->user()]);
+    }
+
     public function responseWithJWT($token,$user = null)
     {
         $cookie = cookie('jwt', $token, config('app.JWT_MINUTES_EXPIRATION', 60), null, null, false, true);
