@@ -1,4 +1,8 @@
 @extends("layouts/base")
+@section('head')
+    @parent
+    <script src="{{ asset("js/services/auth.js") }}"></script>
+@endsection
 <div class="login-page">
     <form class="login-form" action="#" method="GET" id="login-form">
         <label for="name">
@@ -17,7 +21,8 @@
     </div>
 </div>
 
-<script>
+<script src="{{ asset("/js/services/auth.js") }}"></script>
+<script type="module">
     localStorage.removeItem("user_info");
 
     const loginStatusDiv = document.querySelector('.login-status-div');
@@ -31,23 +36,19 @@
     });
 
     function login() {
-        axios.post('/login', {
+        let payload = {
             username: usernameInput.value,
             password: passwordInput.value,
-        }, {
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        };
+        AuthService.login(payload).then((response) => {
+            if (response.status === 200) {
+                localStorage.setItem("user_info", JSON.stringify(response.data));
+                setLoginStatus("login-status-success-div login-status-div", "Login effettuato con successo, stai per essere reindirizzato alla pagina principale");
+                setTimeout(() => {
+                    location.href = "/";
+                }, 3000)
             }
         })
-            .then((response) => {
-                if (response.status === 200) {
-                    localStorage.setItem("user_info", JSON.stringify(response.data));
-                    setLoginStatus("login-status-success-div login-status-div", "Login effettuato con successo, stai per essere reindirizzato alla pagina principale");
-                    setTimeout(() => {
-                        location.href = "/";
-                    }, 3000)
-                }
-            })
             .catch((error) => {
                 setLoginStatus("login-status-error-div login-status-div", "Login fallito, credenziali errate");
             });
