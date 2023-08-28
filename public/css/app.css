@@ -17,26 +17,9 @@
     margin: 20px;
 }
 
-.login-status-div, .logout-status-div {
-    width: 300px;
-    padding: 10px;
-}
-
-.login-status-success-div, .logout-status-success-div {
-    background-color: #5cb85c;
-}
-
-.login-status-error-div, .logout-status-error-div {
-    background-color: #d9534f;
-}
-
-.login-status-label, .logout-status-label {
-    color: white;
-}
-
 .home-page, .login-page {
     margin-top: 50px;
-    padding: 0px 100px;
+    padding: 0 100px;
 }
 
 .token-div {
