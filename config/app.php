@@ -186,4 +186,7 @@ return [
     ])->toArray(),
 
     'JWT_MINUTES_EXPIRATION'=> env('JWT_MINUTES_EXPIRATION',60),
+
+    'PUNK_API_BASE_PATH'=> env('PUNK_API_BASE_PATH',"https://api.punkapi.com/v2"),
+    'BEERS_BASE_PATH'=> env('BEERS_BASE_PATH',"/beers"),
 ];
