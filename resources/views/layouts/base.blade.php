@@ -4,11 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link href="{{ asset("css/app.css") }}" rel="stylesheet"/>
+    <script src="{{ asset("js/services/axios.js") }}"></script>
+
+    @yield("head")
 </head>
 <body>
- @section("content")
- @endsection
+@section("content")
+@endsection
 </body>
+
+<script>
+    const CSRF_TOKEN = "{{ csrf_token() }}";
+</script>
 </html>
