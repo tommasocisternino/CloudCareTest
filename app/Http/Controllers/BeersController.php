@@ -10,8 +10,8 @@ class BeersController extends Controller
     public function getBeersList(Request $request)
     {
         $request->validate([
-            "length" => "integer|required",
-            "start" => "integer|required",
+            "length" => "integer|min:0|max:80|required",
+            "start" => "integer|min:0|required",
         ]);
 
         $per_page = $request->get('length');

@@ -10,8 +10,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'username' => 'required',
-            'password' => 'required',
+            'username' => 'string|required',
+            'password' => 'string|required',
         ]);
 
         if (!$token = auth()->attempt($request->only(['username', 'password']))) {
@@ -29,11 +29,6 @@ class AuthController extends Controller
 
         return response()->json(["message" => "Logged out"
         ], 200);
-    }
-
-    public function check()
-    {
-        return response()->json([auth()->user()]);
     }
 
     public function responseWithJWT($token, $user = null)
