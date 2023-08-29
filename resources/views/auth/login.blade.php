@@ -40,8 +40,17 @@
                         location.href = "/";
                     }, 3000)
                 }
-            }).catch(() => {
-                UtilsService.swalMessage("error", "Login fallito...", "Riprova");
+            }).catch((e) => {
+                if (e.response.status === 401 || e.response.status === 422) {
+                    UtilsService.swalMessage("error", "Login fallito...", "Credenziali errate");
+                } else if (e.response.status === 500) {
+                    UtilsService.swalMessage("error", "Errore del server...", "Riprova piu tardi");
+                } else if (e.response.status === 419) {
+                    UtilsService.swalMessage("error", "Sessione scaduta...", "Ricarica la pagina");
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000)
+                }
             });
         }
     </script>
