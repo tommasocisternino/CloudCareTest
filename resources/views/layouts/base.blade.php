@@ -19,10 +19,8 @@
 <body>
 <nav class="w-100 flex text-end bg-info py-3">
     @auth()
-        <div>
-            <button onclick="UtilsService.logout()" class="btn btn-danger">LOGOUT</button>
-            <label class="mx-3 fw-bold">Ciao {{ auth()->user()->username }}!</label>
-        </div>
+        <button onclick="UtilsService.logout()" class="btn btn-danger">LOGOUT</button>
+        <label class="mx-3 fw-bold">Ciao {{ auth()->user()->username }}!</label>
     @endauth
     @guest()
         <label class="mx-3 fw-bold">Effettua il login</label>

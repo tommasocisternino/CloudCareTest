@@ -6,11 +6,11 @@
             <label for="username" class="fw-bolder">
                 Username
             </label>
-            <input type="text" id="username" class="form-input" autocomplete="username" required/>
+            <input type="text" id="username" class="m-3" autocomplete="username" required/>
             <label for="password" class="fw-bolder">
                 Password
             </label>
-            <input type="password" id="password" class="form-input" autocomplete="password" required/>
+            <input type="password" id="password" class="m-3" autocomplete="password" required/>
             <button id="login-button" class="btn btn-primary" type="submit">LOGIN</button>
         </form>
     </div>

@@ -43,7 +43,7 @@ return [
         'api' => [
             'driver' => 'jwt',
             'provider' => 'users',
-            'ttl' => config('app.JWT_MINUTES_EXPIRATION',60),
+            'ttl' => config('jwt.ttl',60),
         ],
     ],
 

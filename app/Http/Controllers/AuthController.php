@@ -33,12 +33,12 @@ class AuthController extends Controller
 
     public function responseWithJWT($token, $user = null)
     {
-        $cookie = cookie('jwt', $token, config('app.JWT_MINUTES_EXPIRATION', 60), null, null, false, true);
+        $cookie = cookie('jwt', $token, config('jwt.ttl', 60), null, null, false, true);
 
         return response()->json([
             'access_token' => $token,
             'type' => 'Bearer',
-            'expires_in' => config('app.JWT_MINUTES_EXPIRATION', 60) * 60,
+            'expires_in' => config('jwt.ttl', 60) * 60,
             'user' => $user->only("username"),
         ])->withCookie($cookie);
     }
