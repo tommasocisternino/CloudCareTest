@@ -1,4 +1,4 @@
-# TEST PER CLOUD CARE
+# WEB APP DI TEST PER CLOUD CARE
 
 This project is based on Laravel 10.
 
@@ -9,7 +9,7 @@ Install and configure
 
 Create a new database named **_cisterninotommaso-cloudcare-test_**
 
-In **.env** set the following VARIABLE:
+Copy **.env** from **.env.example** and set the following VARIABLE:
 
     DB_HOST=127.0.0.1  
 
@@ -20,14 +20,11 @@ After this run via terminal:
 
     composer install  
     php artisan migrate
+    php artisan db:seed
 	php artisan jwt:secret 
 	php artisan serve  
 
 ## INSTALLATION WITH DOCKER
-In **.env.example** set the following VARIABLE:
+run
 
-	DB_HOST=cisterninotommaso-cloudcare-test
-
-then run
-
-	bash ./vendor/laravel/sail/bin/sail up
+	docker-compose up -d

@@ -2,38 +2,18 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class BeersAPITest extends TestCase
 {
     use RefreshDatabase;
 
-    protected string $token;
-
-    protected User $user;
-
-    protected $setUpHasRun = false;
-
-    public function createUser(){
-        $this->user = new User([
-            'username' => 'utente',
-            'email' => 'utente@test.it',
-            'password' => Hash::make('password'),
-        ]);
-        $this->user->save();
-
-        $this->token = JWTAuth::fromUser($this->user);
-    }
-
     /**
      * Create an user and sends a get request to Laravel API Endpoint using JWT and assert if the response is not empty.
      */
-    public function test_create_and_get(): void
+    public function test_create_user_and_get_beers_list(): void
     {
         $this->createUser();
 
@@ -45,7 +25,7 @@ class BeersAPITest extends TestCase
     /**
      * Create an user and sends a get request to Laravel API Endpoint using JWT without parameters and assert if the response is empty.
      */
-    public function test_create_and_get_without_parameters(): void
+    public function test_create_user_and_get_beers_list_without_parameters(): void
     {
         $this->createUser();
 
@@ -58,7 +38,7 @@ class BeersAPITest extends TestCase
     /**
      * Sends a get request to Laravel API Endpoint using a wrong token and assert if the response is empty.
      */
-    public function test_get_with_wrong_token(): void
+    public function test_get_beers_list_with_wrong_token(): void
     {
         $response = Http::withHeaders(['Authorization' => "Bearer errato"])->get(route('get-beers-list', ["length" => 25, "start" => 0]));
         $this->assertTrue($response->status() === 401);
