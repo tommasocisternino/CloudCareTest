@@ -15,7 +15,7 @@ class AuthController extends Controller
         ]);
 
         if (!$token = auth()->attempt($request->only(['username', 'password']))) {
-            return response()->json(["message" => "Unauthorized", "user" => auth()->user()], 401);
+            return response()->json(["message" => "Unauthorized"], 401);
         }
 
         return $this->responseWithJWT($token, auth()->user());

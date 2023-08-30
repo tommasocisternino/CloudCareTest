@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
 
 class BeersController extends Controller
 {
     public function getBeersList(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             "length" => "integer|min:0|max:80|required",
             "start" => "integer|min:0|required",
         ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
         $per_page = $request->get('length');
         $page = $request->get('start') /$request->get('length') + 1;
