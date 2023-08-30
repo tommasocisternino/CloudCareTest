@@ -22,6 +22,8 @@ After this run via terminal:
 	php artisan serve  
 
 ## INSTALLATION WITH DOCKER (Laravel Sail)
+Copy **.env** from **.env.example**
+
 On your WSL run
     
 	composer install
