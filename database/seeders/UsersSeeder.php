@@ -12,7 +12,7 @@ class UsersSeeder extends Seeder
      */
     public function run(): void
     {
-         \App\Models\User::create([
+         \App\Models\User::firstOrCreate([
              "username" => "root",
              "password" => Hash::make("root"),
              "email" => "root@test.it",

@@ -22,10 +22,17 @@ After this run via terminal:
 	php artisan serve  
 
 ## INSTALLATION WITH DOCKER (Laravel Sail)
-Copy **.env** from **.env.example**
+Copy **.env** from **.env.docker**.
 
-On your WSL run
+On your CLI run
+
+    composer install
+
+On your WLS run
     
-	composer install
     sh ./vendor/bin/sail up
 
+## LARAVEL TESTS
+For run all avaiable tests run on CLI
+    
+    php artisan test
