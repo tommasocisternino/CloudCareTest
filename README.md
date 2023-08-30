@@ -9,10 +9,7 @@ Install and configure
 
 Create a new database named **_cisterninotommaso-cloudcare-test_**
 
-Copy **.env** from **.env.example** and set the following VARIABLE:
-
-    DB_HOST=127.0.0.1  
-
+Copy **.env** from **.env.example**
 
 If you need you can edit _**DB_USERNAME**_ and _**DB_PASSWORD**_ too.
 
@@ -24,7 +21,9 @@ After this run via terminal:
 	php artisan jwt:secret 
 	php artisan serve  
 
-## INSTALLATION WITH DOCKER
-run
+## INSTALLATION WITH DOCKER (Laravel Sail)
+On your WSL run
+    
+	composer install
+    sh ./vendor/bin/sail up
 
-	docker-compose up -d
