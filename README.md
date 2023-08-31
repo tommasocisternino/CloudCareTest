@@ -1,6 +1,6 @@
 # WEB APP DI TEST PER CLOUD CARE
 
-This project is based on Laravel 10.
+This project is based on Laravel 10 and the mininum PHP version is 8.1 .
 
 ## BASIC INSTALLATION
 Install and configure
@@ -33,6 +33,14 @@ On your WLS run
     sh ./vendor/bin/sail up
 
 ## LARAVEL TESTS
-For run all avaiable tests run on CLI
+On your **.env** you should set the 8000 port on APP_URL like the following line
+
+    APP_URL=http://localhost:8000
+
+Run on your CLI
+
+    php artisan serve
+
+For run all avaiable tests run on an other CLI
     
     php artisan test

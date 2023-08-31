@@ -10,8 +10,11 @@
             <label for="password" class="fw-bolder">
                 Password
             </label>
-            <input type="password" id="password" class="m-3" autocomplete="password" required/>
+            <input type="password" id="password" class="m-3 mb-5" autocomplete="password" required/>
             <button id="login-button" class="btn btn-primary" type="submit">LOGIN</button>
+            <div class="spinner-border text-primary mx-auto" id="spinner" role="status" hidden>
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </form>
     </div>
 @endsection
@@ -22,12 +25,9 @@
         const usernameInput = document.getElementById('username');
         const passwordInput = document.getElementById('password');
 
-        document.getElementById('login-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            login();
-        });
-
         function login() {
+            setLoading(true);
+
             let payload = {
                 username: usernameInput.value,
                 password: passwordInput.value,
@@ -51,7 +51,21 @@
                         location.reload();
                     }, 3000)
                 }
+            }).finally(() => {
+                setLoading(false);
             });
         }
+
+        const spinner = document.getElementById('spinner');
+        const loginButton = document.getElementById('login-button');
+        function setLoading(loading) {
+            spinner.hidden = !loading;
+            loginButton.hidden = loading;
+        }
+
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            login();
+        });
     </script>
 @endsection
